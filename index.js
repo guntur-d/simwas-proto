@@ -134,14 +134,10 @@ var ref = {
         ref.formId = oid.id
         e = e || window.event;
 
-
-        var target = ref.target || e.target
-        while (target && target.nodeName !== "TD") {
-            target = target.parentNode
-        }
-
-
-
+      
+        var target =   e.target
+        if(target.innerHTML=="Rekomendasi Baru"){target = ref.target}
+  
         console.log(target)
         var thisrow = target.parentNode
         ref.target = null
@@ -201,13 +197,22 @@ var ref = {
                         var cell = prevRow.getElementsByClassName("temuan")
                          var befcell = thisrow.getElementsByClassName("temuan")
                          befcell[0].outerHTML = null
-                         console.log(cell)
+                         console.log(cell.length)
+                        while(cell.length<1){
+                            var prevRow = prevRow.previousElementSibling;
+                            cell = prevRow.getElementsByClassName("temuan")
+                            console.log(cell.length)
+                        }
+                        console.log(cell)
                          console.log(cell[0].getAttribute('rowspan'))
                         if(cell[0].getAttribute('rowspan')==null){
                             cell[0].setAttribute('rowspan',2)
+                        } else {
+                           var r=Number(cell[0].getAttribute('rowspan'))
+                           cell[0].setAttribute('rowspan',r+1)
                         }
                         
-                      //  cell[0].outerHTML = null.getElementsByClassName("temuan")
+                       
                 }
 
                 target.innerHTML = ref.subTable(ref.newRecc.id, ref.newRecc.bobot, ref.newRecc.desc, ref.newRecc.refid)
