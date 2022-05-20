@@ -128,8 +128,7 @@ var ref = {
 
     newReccom: (e) => {
 
-        m.redraw()
-
+     
         var oid = new ObjectID('Recc')
         ref.formId = oid.id
         e = e || window.event;
@@ -239,7 +238,7 @@ var ref = {
                 ref.formId = null
                 ref.newRecc = null
 
-                console.log(ref.TemuanRef.ref)
+               
 
             }
 
@@ -319,7 +318,7 @@ var ref = {
 
             m.redraw()
 
-            //   target.innerHTML = "dasdsd"
+             
         }
     },
     subTable: (id, bobot, desc, refid) => {
