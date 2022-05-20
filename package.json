@@ -1,0 +1,22 @@
+{
+  "name": "simwasda",
+  "version": "0.1.0",
+  "source": "index.html",
+  "scripts": {
+    "back": "nodemon server.js",
+    "front_clean": "rd /s/q dist & npx parcel build"
+  },
+  "dependencies": {
+    "core-js": "^3.17.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "lodash": "^4.17.21",
+    "mithril": "^2.0.4",
+    "mongoose": "^6.3.3",
+    "path": "^0.12.7",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  }
+}
