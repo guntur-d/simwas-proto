@@ -296,8 +296,7 @@ var ref = {
                         })
                     })
 
-
-
+ 
                     ref.TemuanRef.ref.map(item => {
                         item != null ? newArr.push(item) : true
                     })
@@ -307,8 +306,7 @@ var ref = {
 
    
                 ref.state.form = null
-          
-
+           
                 newReccEntry(values)
 
 
@@ -419,7 +417,7 @@ var ref = {
     },
 }
 
-const temuan = {
+const main = {
 
 
     onupdate: ref.paint,
@@ -433,4 +431,4 @@ const temuan = {
 }
 
  
-m.mount(document.body, temuan);
+m.mount(document.body, main);
