@@ -33,9 +33,9 @@ var rekomendasi = {
             ]
             var ids = arrParam.map(arr => arr.id)
 
-            var onSubmit = () => {
+            var onSubmit = (e) => {
 
-
+                e.preventDefault()
                 var rekomendasi = {
                     id: document.getElementById(ids[0]).value,
                     bobot: document.getElementById(ids[1]).value,
@@ -95,7 +95,7 @@ var rekomendasi = {
 
                 target.onclick = null
                 target.innerHTML = ref.subTable(ref.newRecc.id, ref.newRecc.bobot, ref.newRecc.desc, ref.newRecc.refid)
-                
+
 
                 if (ref.TemuanRef.ref.length == 1) {
                     var id = ref.TemuanRef.ref[0].id

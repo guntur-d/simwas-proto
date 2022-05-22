@@ -182,7 +182,7 @@ var ref = {
     paint: () => {
 
         var elTgl = document.getElementById("toggle")
-        elTgl ? !elTgl.hasChildNodes() ? ref.toggle() : null : null
+        elTgl ? !elTgl.hasChildNodes() ? ref.toggleUp() : null : null
 
 
         var el = document.getElementById(ref.tabId)
@@ -196,18 +196,17 @@ var ref = {
         if (el == undefined) {
             var table = ref.tabelBaru(ref.tabId)
             ref.tableComp = m.trust(table)
-
-            console.log("newtable called")
+ 
 
         }
 
         console.log("new row allowed,", ref.newrowallowed)
 
         if (el && ref.newrowallowed) {
-            console.log("newrow called")
+         
             ref.newRow()
         }
-
+ 
         if (el && !ref.toggle) {
 
             for (var element of document.getElementsByClassName("plsHide")) {
@@ -216,8 +215,7 @@ var ref = {
             for (var element of document.getElementsByClassName("plsDelborder")) {
                 element.style.border = "none"
             }
-          
-
+ 
         }
 
         if (el && ref.toggle) {
@@ -229,8 +227,7 @@ var ref = {
             for (var element of document.getElementsByClassName("plsDelborder")) {
                 element.style.border = "1px solid #dbdbdb";
             }
-
-            
+ 
         }
 
         console.log(ref.tableComp)
@@ -261,11 +258,21 @@ var ref = {
 
     subTable: (id, bobot, desc, refid) => {
 
-        var content = '<table class="table" ><tbody class="data"><tr ><td class="oid plsHide">' + id + '</td><td class="plsHide" id="bobot_' + id + '">' + bobot + '</td></tr>'
-        content += '<tr ><td class="plsDelborder desc" colspan = "2" id="desc_' + id + '">' + desc + '</td></tr>'
+        // var content = '<table class="table" ><tbody class="data"><tr ><td class="oid plsHide">' + id + '</td><td class="plsHide" id="bobot_' + id + '">' + bobot + '</td></tr>'
+        // content += '<tr ><td class="plsDelborder desc" colspan = "2" id="desc_' + id + '">' + desc + '</td></tr>'
+        // content += '<tr><td colspan = "2" class="plsHide" id="refid_' + id + '">' + refid + '</td></tr>'
+        // content += '<tr><td style="border:none;" class="plsHide"><div class="buttons"><button class="button is-info editCellBtn">Edit</button></div></td>'
+        // content += '<td style="border:none;" class="plsHide"><div class="buttons"><button class="button is-danger disArmMe delCellBtn">Hapus</button></div></td>'
+        // content += '</tr>'
+
+        // content += '</tbody></table>'
+        // return content
+
+        var content = '<table class="table" ><tbody class="data"><tr ><td style="display: none;" class="oid plsHide">' + id + '</td><td style="display: none;" class="plsHide" id="bobot_' + id + '">' + bobot + '</td></tr>'
+        content += '<tr ><td class="plsDelborder desc" style="border: none;" colspan = "2" id="desc_' + id + '">' + desc + '</td></tr>'
         content += '<tr><td colspan = "2" class="plsHide" id="refid_' + id + '">' + refid + '</td></tr>'
-        content += '<tr><td style="border:none;" class="plsHide"><div class="buttons"><button class="button is-info editCellBtn">Edit</button></div></td>'
-        content += '<td style="border:none;" class="plsHide"><div class="buttons"><button class="button is-danger disArmMe delCellBtn">Hapus</button></div></td>'
+        content += '<tr><td style="border:none;" style="display: none;" class="plsHide"><div class="buttons"><button class="button is-info editCellBtn">Edit</button></div></td>'
+        content += '<td style="border:none;" style="display: none;" class="plsHide"><div class="buttons"><button class="button is-danger disArmMe delCellBtn">Hapus</button></div></td>'
         content += '</tr>'
 
         content += '</tbody></table>'
@@ -283,7 +290,7 @@ var ref = {
 
     },
 
-    toggle: () => {
+    toggleUp: () => {
 
 
         var defaultSetting = "off"
@@ -302,7 +309,7 @@ var ref = {
                 toggleSwitchCircle.style.transform = "translateX(100%)"
                 toggleButton.style.background = "hsl(171, 100%, 41%)"
                 ref.toggle = true
-                m.redraw()
+           
 
                 // execute code when ON
 
@@ -311,7 +318,7 @@ var ref = {
                 toggleSwitchCircle.style.transform = "translateX(0%)"
                 toggleButton.style.background = "white"
                 ref.toggle = false
-                m.redraw()
+        
 
                 // execute code when OFF
 
