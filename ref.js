@@ -280,7 +280,7 @@ var ref = {
 
     subTable: (id, bobot, desc, refid) => {
 
-        var content = '<table class="table" ><tbody class="data"><tr ><td class="oid plsHide">' + id + '</td><td style="border:none;"id="bobot_' + id + '">Bobot: ' + bobot + ' %</td></tr>'
+        var content = '<table class="table" ><tbody class="data"><tr ><td class="oid plsHide">' + id + '</td><td class="plsDelborder" style="border:none;"id="bobot_' + id + '">Bobot: ' + bobot + ' %</td></tr>'
         content += '<tr ><td class="plsDelborder desc" colspan = "2" id="desc_' + id + '">' + desc + '</td></tr>'
         content += '<tr><td colspan = "2" class="plsHide" id="refid_' + id + '">' + refid + '</td></tr>'
         content += '<tr><td style="border:none;" class="plsHide"><div class="buttons"><button class="button is-info editCellBtn">Edit</button></div></td>'
