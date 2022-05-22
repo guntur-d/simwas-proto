@@ -1,0 +1,21 @@
+@import url("https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"); /* Using a url */
+
+toggleButton{ 
+    width: 50px; 
+    min-width: 42px; 
+     display: block; 
+     padding: 4px; 
+     border: 3px hsl(9, 94%, 45%); 
+     border-radius: 60px; 
+     transition: 0.5s; 
+     
+   } 
+   toggleSwitchCircle { 
+     display: block; 
+     width: 20px; 
+     height: 20px; 
+     border: 1px rgb(145, 4, 4) solid; 
+     background-color: white;
+     border-radius: 50%; 
+     transition: 0.5s; 
+   }
