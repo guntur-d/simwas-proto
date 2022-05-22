@@ -155,7 +155,9 @@ var rekomendasi = {
 
             console.log(arrParam)
 
-            var onSubmit = () => {
+            var onSubmit = (e) => {
+
+                e.preventDefault()
 
                 var selectEl = document.getElementById(ref.formId);
                 var arrSel = [], Obj
