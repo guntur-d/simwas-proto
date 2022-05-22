@@ -147,7 +147,7 @@ var ref = {
                 element.style.display="flex"
              }
              for (var element of document.getElementsByClassName("plsDelborder")){
-                element.style.border = "thick solid #0000FF";
+                element.style.border = "1px solid #dbdbdb";
              }
         }
 
