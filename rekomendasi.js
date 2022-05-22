@@ -190,7 +190,7 @@ var rekomendasi = {
                 }
 
                 ref.state.form = null
-
+ 
                 newReccEntry(values)
 
 

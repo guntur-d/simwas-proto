@@ -173,15 +173,17 @@ var ref = {
             e.preventDefault()
             console.log(ref.recData)
             var index
-            ref.recData[keyData].map((item, idx) => {
 
-                if (item.id = id) { return index = idx }
+            ref.recData[keyData].map((item, idx) => {
+ 
+                item.id == id ?  index = idx : null
 
             })
+           
             ids.map((val, idx) => {
                 ref.recData[keyData][index][val] = document.getElementById(val).value
             })
-            console.log(index)
+         
 
             console.log(ref.recData)
             ref.newrowallowed = false
@@ -251,7 +253,8 @@ var ref = {
         }
 
         console.log(ref.recData)
-        console.log(ref.tableComp.children)
+
+        console.log(document.getElementById(ref.tabId))
 
 
     },
