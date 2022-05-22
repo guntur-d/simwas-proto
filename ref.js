@@ -3,6 +3,8 @@ import rekomendasi from './rekomendasi'
 
 
 
+
+
 var ref = {
 
     toggle: false,
@@ -86,7 +88,7 @@ var ref = {
                 newcell.classList.add("temuan");
             }
             if (i == 2) {
-                newcell.addEventListener("click", rekomendasi.newReccom)
+                newcell.onclick = rekomendasi.newReccom
                 newcell.classList.add("rekomendasi");
             }
         }
@@ -104,6 +106,75 @@ var ref = {
         table = null
         row = null
         rowCount = null
+        m.redraw()
+
+    },
+
+    editThisCell: (e) => {
+        console.log("call edit")
+        e = e || window.event;
+
+        var target = e.target
+        while (target && target.className !== "table") {
+            target = target.parentNode
+            console.log(target)
+        }
+
+
+        if (target) {
+            var id = target.querySelector(".oid").innerHTML
+            var bobot = target.querySelector("#bobot_" + id).innerHTML
+            var desc = target.querySelector("#desc_" + id).innerHTML
+            var refid = target.querySelector("#refid_" + id).innerHTML
+
+            console.log(id, bobot, desc, refid)
+        }
+
+        console.log(ref.recData)
+        var keyData = id.slice(0, -8)
+        ref.target = target.parentNode
+
+        var arrParam = [
+            { id: "id", type: "text", ph: id, value: id, disabled: true },
+            { id: "bobot", type: "number", ph: bobot, value: bobot, disabled: false },
+            { id: "desc", type: "text", ph: desc, value: desc, disabled: false },
+            { id: "refid", type: "text", ph: refid, value: refid, disabled: true }
+
+        ]
+
+        var ids = arrParam.map(arr => arr.id)
+
+
+        var onSubmit = (e) => {
+
+            e.preventDefault()
+            console.log(ref.recData)
+            var index
+            ref.recData[keyData].map((item, idx) => {
+
+                if (item.id = id) { return index = idx }
+
+            })
+            ids.map((val, idx) => {
+                ref.recData[keyData][index][val] = document.getElementById(val).value
+            })
+            console.log(index)
+
+            console.log(ref.recData)
+            ref.newrowallowed = false
+            ref.state.form = null
+
+            ref.target.innerHTML = ref.subTable(ref.recData[keyData][index].id,
+                ref.recData[keyData][index].bobot,
+                ref.recData[keyData][index].desc,
+                ref.recData[keyData][index].refid)
+
+            ref.target = null
+
+        }
+
+        ref.state.form = ref.form(arrParam, id, onSubmit)
+        m.redraw()
 
     },
 
@@ -111,10 +182,17 @@ var ref = {
     paint: () => {
 
         var elTgl = document.getElementById("toggle")
-     
         elTgl ? !elTgl.hasChildNodes() ? ref.toggle() : null : null
 
+
         var el = document.getElementById(ref.tabId)
+        if (el && el.rows.length > 1) {
+
+            for (var element of el.getElementsByClassName("editCellBtn")) {
+
+                element.onclick = ref.editThisCell
+            }
+        }
         if (el == undefined) {
             var table = ref.tabelBaru(ref.tabId)
             ref.tableComp = m.trust(table)
@@ -130,28 +208,35 @@ var ref = {
             ref.newRow()
         }
 
-        if(el && !ref.toggle){
-             
-            for (var element of document.getElementsByClassName("plsHide")){
-                element.style.display="none"
-             }
-             for (var element of document.getElementsByClassName("plsDelborder")){
+        if (el && !ref.toggle) {
+
+            for (var element of document.getElementsByClassName("plsHide")) {
+                element.style.display = "none"
+            }
+            for (var element of document.getElementsByClassName("plsDelborder")) {
                 element.style.border = "none"
-             }
-            
+            }
+          
+
+        }
+
+        if (el && ref.toggle) {
+            for (var element of document.getElementsByClassName("plsHide")) {
+                element.style.display = "table-cell"
+            }
+
+
+            for (var element of document.getElementsByClassName("plsDelborder")) {
+                element.style.border = "1px solid #dbdbdb";
+            }
+
             
         }
 
-        if(el && ref.toggle){
-            for (var element of document.getElementsByClassName("plsHide")){
-                element.style.display="flex"
-             }
-             for (var element of document.getElementsByClassName("plsDelborder")){
-                element.style.border = "1px solid #dbdbdb";
-             }
-        }
+        console.log(ref.tableComp)
 
     },
+
 
     tabelBaru: (id) => {
 
@@ -176,9 +261,14 @@ var ref = {
 
     subTable: (id, bobot, desc, refid) => {
 
-        var content = ' <table align="center" class="table" ><tbody><tr class="plsHide"><td>' + id + '</td>'
-        content += '<td>' + bobot + '</td></tr><tr ><td class="plsDelborder" colspan = "2" >' + desc
-        content += '</td></tr><tr><td colspan = "2" class="plsHide">' + refid + '</td></tr></tbody></table>'
+        var content = '<table class="table" ><tbody class="data"><tr ><td class="oid plsHide">' + id + '</td><td class="plsHide" id="bobot_' + id + '">' + bobot + '</td></tr>'
+        content += '<tr ><td class="plsDelborder desc" colspan = "2" id="desc_' + id + '">' + desc + '</td></tr>'
+        content += '<tr><td colspan = "2" class="plsHide" id="refid_' + id + '">' + refid + '</td></tr>'
+        content += '<tr><td style="border:none;" class="plsHide"><div class="buttons"><button class="button is-info editCellBtn">Edit</button></div></td>'
+        content += '<td style="border:none;" class="plsHide"><div class="buttons"><button class="button is-danger disArmMe delCellBtn">Hapus</button></div></td>'
+        content += '</tr>'
+
+        content += '</tbody></table>'
         return content
     },
 
@@ -188,8 +278,6 @@ var ref = {
     insRecc: () => {
 
         console.log("new rec bttn clicked")
-
-
         rekomendasi.newReccom(ref.newRow())
 
 
@@ -197,7 +285,7 @@ var ref = {
 
     toggle: () => {
 
-     
+
         var defaultSetting = "off"
 
         const toggleButton = document.createElement('toggleButton');
@@ -207,7 +295,7 @@ var ref = {
         const toggleSwitchCircle = document.createElement('toggleSwitchCircle');
         toggleButton.appendChild(toggleSwitchCircle);
 
-        function toggleSwitchTransformFunction() {
+        var toggleSwitchTransformFunction = () => {
             if (defaultSetting == "off") {
 
                 defaultSetting = "on"

@@ -2,29 +2,29 @@ import ref from "./ref"
 import m from 'mithril'
 
 var rekomendasi = {
-  
+
 
 
     newReccom: (e) => {
 
-     
-        var oid =  ref.ObjectID('Recc')
+
+        var oid = ref.ObjectID('Recc')
         ref.formId = oid
         e = e || window.event;
 
-      
-        var target =   e.target
-        if(target.innerHTML=="Rekomendasi Baru"){target = ref.target}
-  
+
+        var target = e.target
+        if (target.innerHTML == "Rekomendasi Baru") { target = ref.target }
+
         console.log(target)
         var thisrow = target.parentNode
         ref.target = null
 
         var newReccEntry = (refid) => {
 
-            var oid =  ref.ObjectID('Recc')
+            var oid = ref.ObjectID('rekomendasi')
 
-            ref.formId = oid 
+            ref.formId = oid
             var arrParam = [
                 { id: "id", type: "text", ph: oid, value: oid, disabled: true },
                 { id: "bobot", type: "number", ph: "BOBOT", value: 100, disabled: false },
@@ -55,7 +55,7 @@ var rekomendasi = {
 
                 ref.newRecc = rekomendasi
 
-               
+
                 var len = ref.newRecc.refid.length
                 if (len > 1) {
 
@@ -70,30 +70,32 @@ var rekomendasi = {
                     target.setAttribute('valign', "middle")
 
 
-                } else if(ref.newReccAllowed){
+                } else if (ref.newReccAllowed) {
                     var prevRow = thisrow.previousElementSibling;
-                        var cell = prevRow.getElementsByClassName("temuan")
-                         var befcell = thisrow.getElementsByClassName("temuan")
-                         befcell[0].outerHTML = null
-                         console.log(cell.length)
-                        while(cell.length<1){
-                            var prevRow = prevRow.previousElementSibling;
-                            cell = prevRow.getElementsByClassName("temuan")
-                            console.log(cell.length)
-                        }
-                        console.log(cell)
-                         console.log(cell[0].getAttribute('rowspan'))
-                        if(cell[0].getAttribute('rowspan')==null){
-                            cell[0].setAttribute('rowspan',2)
-                        } else {
-                           var r=Number(cell[0].getAttribute('rowspan'))
-                           cell[0].setAttribute('rowspan',r+1)
-                        }
-                        
-                       
+                    var cell = prevRow.getElementsByClassName("temuan")
+                    var befcell = thisrow.getElementsByClassName("temuan")
+                    befcell[0].outerHTML = null
+                    console.log(cell.length)
+                    while (cell.length < 1) {
+                        var prevRow = prevRow.previousElementSibling;
+                        cell = prevRow.getElementsByClassName("temuan")
+                        console.log(cell.length)
+                    }
+                    console.log(cell)
+                    console.log(cell[0].getAttribute('rowspan'))
+                    if (cell[0].getAttribute('rowspan') == null) {
+                        cell[0].setAttribute('rowspan', 2)
+                    } else {
+                        var r = Number(cell[0].getAttribute('rowspan'))
+                        cell[0].setAttribute('rowspan', r + 1)
+                    }
+
+
                 }
 
+                target.onclick = null
                 target.innerHTML = ref.subTable(ref.newRecc.id, ref.newRecc.bobot, ref.newRecc.desc, ref.newRecc.refid)
+                
 
                 if (ref.TemuanRef.ref.length == 1) {
                     var id = ref.TemuanRef.ref[0].id
@@ -117,7 +119,7 @@ var rekomendasi = {
                 ref.formId = null
                 ref.newRecc = null
 
-               
+                m.redraw()
 
             }
 
@@ -140,7 +142,7 @@ var rekomendasi = {
                     return
                 }
             }
- 
+
             var objParam = null
             var arrParam = []
 
@@ -150,7 +152,7 @@ var rekomendasi = {
                 arrParam.push(objParam)
             }
 
- 
+
             console.log(arrParam)
 
             var onSubmit = () => {
@@ -179,7 +181,7 @@ var rekomendasi = {
                 }
 
                 ref.state.form = null
-           
+
                 newReccEntry(values)
 
 
@@ -191,9 +193,9 @@ var rekomendasi = {
 
         }
     },
- 
 
-  
+
+
 }
 
 

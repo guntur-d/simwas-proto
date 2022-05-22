@@ -5,7 +5,7 @@ var temuan = {
 
      Baru: () => {
 
-        var oid = ref.ObjectID('Temuan')
+        var oid = ref.ObjectID('temuan')
         
         ref.recBttn = null
 
@@ -17,7 +17,8 @@ var temuan = {
         ]
         var ids = arrParam.map(arr => arr.id)
 
-        var onSubmit = () => {
+        var onSubmit = (e) => {
+            e.preventDefault()
 
             var temuan = {
                 id: document.getElementById(ids[0]).value,
