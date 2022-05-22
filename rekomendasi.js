@@ -72,22 +72,29 @@ var rekomendasi = {
 
                 } else if (ref.newReccAllowed) {
                     var prevRow = thisrow.previousElementSibling;
+
                     var cell = prevRow.getElementsByClassName("temuan")
+                    var cella = prevRow.getElementsByClassName("urutan")
                     var befcell = thisrow.getElementsByClassName("temuan")
+                    var befcella = thisrow.getElementsByClassName("urutan")
                     befcell[0].outerHTML = null
-                    console.log(cell.length)
+                    befcella[0].outerHTML = null
+                    // console.log(cell.length)
                     while (cell.length < 1) {
                         var prevRow = prevRow.previousElementSibling;
                         cell = prevRow.getElementsByClassName("temuan")
-                        console.log(cell.length)
+                        cella = prevRow.getElementsByClassName("urutan")
+                      //  console.log(cell.length)
                     }
-                    console.log(cell)
-                    console.log(cell[0].getAttribute('rowspan'))
+                  //  console.log(cell)
+                  //  console.log(cell[0].getAttribute('rowspan'))
                     if (cell[0].getAttribute('rowspan') == null) {
                         cell[0].setAttribute('rowspan', 2)
+                        cella[0].setAttribute('rowspan', 2)
                     } else {
                         var r = Number(cell[0].getAttribute('rowspan'))
                         cell[0].setAttribute('rowspan', r + 1)
+                        cella[0].setAttribute('rowspan', r + 1)
                     }
 
 
